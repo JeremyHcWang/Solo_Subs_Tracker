@@ -1,12 +1,10 @@
 const express = require('express');
 const path = require('path');
-const mongoose = require('mongoose');
 
 const PORT = 3000;
-
 const app = express();
 
-const subsController = require('./controllers/subsController');
+const apiRouter = require('./routes/api.js');
 
 /**
  * handle parsing request body
@@ -19,10 +17,7 @@ app.use(express.urlencoded({ extended: true }));
  */
 app.use(express.static(path.resolve(__dirname, '../client')));
 
-app.post('/api/subscription', subsController.addSubs, (req, res) => {
-    return res.status(200).json(res.locals.newSubs);
-})
-
+app.use('/api', apiRouter);
 
 // 404 handler
 app.use('*', (req, res) => {

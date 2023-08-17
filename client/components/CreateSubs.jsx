@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
+//import { withRouter } from 'react-router-dom';
+import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 // Custom hook for handling input boxes
 const useInput = init => {
@@ -12,7 +16,7 @@ const useInput = init => {
     return [ value, onChange ];
 };
 
-const subsForm = props => {
+const SubsForm = props => {
     const [subsName, setSubsName] = useInput('');
     const [cost, setCost] = useInput('');
     const [startMonth, setStartMonth] = useInput('');
@@ -32,6 +36,7 @@ const subsForm = props => {
                 startMonth,
                 endMonth,
             };
+            console.log(body);
             fetch('/api/subscription', {
                 method: 'POST',
                 headers: {
@@ -64,35 +69,35 @@ const subsForm = props => {
                     <Col>
                         <Form.Select aria-label="Start Month" onChange={setStartMonth}>
                             <option>Choose start month</option>
-                            <option value="1">Jan.</option>
-                            <option value="2">Feb.</option>
-                            <option value="3">Mar.</option>
-                            <option value="4">Apr.</option>
-                            <option value="5">May</option>
-                            <option value="6">Jun.</option>
-                            <option value="7">Jul.</option>
-                            <option value="8">Aug.</option>
-                            <option value="9">Sep.</option>
-                            <option value="10">Oct.</option>
-                            <option value="11">Nov.</option>
-                            <option value="12">Dec.</option>
+                            <option type="number" value="1">Jan.</option>
+                            <option type="number" value="2">Feb.</option>
+                            <option type="number" value="3">Mar.</option>
+                            <option type="number" value="4">Apr.</option>
+                            <option type="number" value="5">May</option>
+                            <option type="number" value="6">Jun.</option>
+                            <option type="number" value="7">Jul.</option>
+                            <option type="number" value="8">Aug.</option>
+                            <option type="number" value="9">Sep.</option>
+                            <option type="number" value="10">Oct.</option>
+                            <option type="number" value="11">Nov.</option>
+                            <option type="number" value="12">Dec.</option>
                         </Form.Select>
                     </Col>
                     <Col>
                         <Form.Select aria-label="End Month" onChange={setEndMonth}>
                             <option>Choose end month</option>
-                            <option value="1">Jan.</option>
-                            <option value="2">Feb.</option>
-                            <option value="3">Mar.</option>
-                            <option value="4">Apr.</option>
-                            <option value="5">May</option>
-                            <option value="6">Jun.</option>
-                            <option value="7">Jul.</option>
-                            <option value="8">Aug.</option>
-                            <option value="9">Sep.</option>
-                            <option value="10">Oct.</option>
-                            <option value="11">Nov.</option>
-                            <option value="12">Dec.</option>
+                            <option type="number" value="1">Jan.</option>
+                            <option type="number" value="2">Feb.</option>
+                            <option type="number" value="3">Mar.</option>
+                            <option type="number" value="4">Apr.</option>
+                            <option type="number" value="5">May</option>
+                            <option type="number" value="6">Jun.</option>
+                            <option type="number" value="7">Jul.</option>
+                            <option type="number" value="8">Aug.</option>
+                            <option type="number" value="9">Sep.</option>
+                            <option type="number" value="10">Oct.</option>
+                            <option type="number" value="11">Nov.</option>
+                            <option type="number" value="12">Dec.</option>
                         </Form.Select>
                     </Col>
                     <Col>
@@ -104,5 +109,5 @@ const subsForm = props => {
     );
 }
 
-export default subsForm;
+export default SubsForm;
 

@@ -1,10 +1,12 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: '/client/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
+    publicPath: '/',
     filename: 'bundle.js',
   },
   mode: process.env.NODE_ENV,
@@ -24,7 +26,7 @@ module.exports = {
       },
       {
         test: /\.s?css/,
-        exclude: /node_modules/,
+        //exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
@@ -34,19 +36,24 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
         title: 'Development',
-        template: 'index.html',
+        template: './client/index.html',
     }),
   ],
   devServer: {
-    // tells devServer WHEERE to serve (publicPath)
-    //static: path.join(__dirname),
+    host: 'localhost',
+    port: 8080,
+    // // enable HMR on the devServer
+    // hot: true,
+    // // fallback to root for other urls
+    // historyApiFallback: true,
+
     static: {
-      directory: path.join(__dirname),
+      directory: path.resolve(__dirname, 'build'),
       publicPath: '/',
     },
 
-    // proxy: {
-    //   '/api/leaders': 'http://localhost:3000/api/leaders',
-    // },
+    proxy: {
+      '/api': 'http://localhost:3000',
+    },
   },
 };

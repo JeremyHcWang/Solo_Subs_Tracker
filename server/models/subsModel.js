@@ -19,8 +19,8 @@ const userSchema = new Schema({
 const subSchema = new Schema({
   name: {type: String, required: true},
   cost: {type: Number, required: true},
-  startMonth: {type: Number, required: true},
-  endMonth: {type: Number, required: true},
+  startMonth: {type: Number},
+  endMonth: {type: Number},
 });
 
 const User = mongoose.model('user', userSchema);
